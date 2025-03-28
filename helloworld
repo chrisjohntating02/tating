@@ -1,0 +1,41 @@
+import java.util.*
+//Note* This code require OneCompiler to run the program
+
+fun main(args:Array<String>){
+
+fun breaker(){
+  for(o in 1..5){
+    println("..")
+  }
+}
+
+fun header(){
+//create a spacer  
+  println("")
+
+}
+header()
+
+print("Survey ABC internet app form")
+print("\r\n")
+for(i in 1..50){
+  print("-")
+}
+
+print("Enter name")
+val name = readLine()
+println("")
+//print("your name is $name")
+
+print("Enter email")
+println("")
+val email = readLine()
+
+print("\n plese rate the following aspect from 1 to 5..5 is the highest")
+println(" ")
+println("\n User interface")
+val interface1 = readLine()?.toIntOrNull() ?: 0
+print("\n interface = $interface1")
+//continue here...
+
+}
