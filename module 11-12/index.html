@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('ag.avif');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .chat-container {
+            max-width: 400px;
+            margin: 20px auto;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            background-color: #F5f5dc;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .chat-messages {
+            height: 300px;
+            overflow-y: scroll;
+            border-bottom: 1px solid #ccc;
+            padding: 5px;
+            background-color: #f2e4df;
+        }
+        .chat-input {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        .chat-input input {
+            width: 70%;
+            padding: 5px;
+            margin-right: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        .chat-input button {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 3px;
+            background-color: #f2e4df;
+            color: black;
+            cursor: pointer;
+        }
+        .chat-input button:hover {
+            background-color: #f3bdaa;
+        }
+        h1 {
+            text-align: center;
+        }
+        .message {
+            padding: 5px 10px;
+            border-radius: 3px;
+            margin-bottom: 5px;
+            width: fit-content;
+            max-width: 70%;
+            clear: both;
+        }
+        .outgoing {
+            background-color: #dcf8c6;
+            align-self: flex-end;
+            margin-left: auto;
+        }
+        .incoming {
+            background-color: #fff;
+            align-self: flex-start;
+            margin-right: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Chat Inbox</h1>
+    <div class="chat-container">
+        <div id="chat-messages" class="chat-messages"></div>
+        <div class="chat-input">
+            <input type="text" id="message-input" placeholder="Type your message">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+    <script>
+        function sendMessage() {
+            const messageInput = document.getElementById('message-input');
+            const message = messageInput.value.trim();
+
+            if (message !== "") {
+                const chatMessages = document.getElementById('chat-messages');
+                const newMessage = document.createElement("div");
+                newMessage.classList.add('message', 'outgoing');
+                newMessage.textContent = message;
+                chatMessages.appendChild(newMessage);
+                messageInput.value = '';
+                messageInput.focus();
+
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+
+                setTimeout(sendReply, 1000);
+            }
+        }
+
+        function sendReply() {
+            const chatMessages = document.getElementById('chat-messages');
+            const replyMessage = document.createElement("div");
+            replyMessage.classList.add('message', 'incoming');
+            replyMessage.textContent = 'WELCOME!';
+            chatMessages.appendChild(replyMessage);
+
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+    </script>
+</body>
+</html>
